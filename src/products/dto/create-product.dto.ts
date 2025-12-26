@@ -15,5 +15,5 @@ export class CreateProductDto {
   )
   @Min(0, { message: 'El precio debe ser mayor o igual a 0' })
   @Type(() => Number)
-  public price: string;
+  public price: number;
 }

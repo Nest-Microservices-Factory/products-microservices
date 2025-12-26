@@ -1,12 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { PrismaClient } from 'generated/prisma/client';
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import { envs } from './config';
 
 @Injectable()
 export class PrismaService extends PrismaClient {
+  private logger = new Logger('PrismaService');
+
   constructor() {
     const adapter = new PrismaBetterSqlite3({ url: envs.DATABASE_URL });
     super({ adapter });
+
+    this.logger.log('Database connected');
   }
 }
